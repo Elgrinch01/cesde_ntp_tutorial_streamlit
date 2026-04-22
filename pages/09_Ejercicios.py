@@ -106,6 +106,8 @@ if "logueado" not in st.session_state:
     st.session_state.logueado = False
 if "usuario_actual" not in st.session_state:
     st.session_state.usuario_actual = ""
+if "mostrar_exito_login" not in st.session_state:
+    st.session_state.mostrar_exito_login = False
 
 if not st.session_state.logueado:
     usuario = st.text_input("Usuario:", key="login_usuario")
@@ -115,14 +117,19 @@ if not st.session_state.logueado:
         if usuario == "admin" and contraseña == "1234":
             st.session_state.logueado = True
             st.session_state.usuario_actual = usuario
-            st.success("Ingreso exitoso!")
+            st.session_state.mostrar_exito_login = True
             st.rerun()
         else:
             st.error("Usuario o contraseña incorrectos")
 else:
+    if st.session_state.mostrar_exito_login:
+        st.success("Ingreso exitoso!")
+        st.session_state.mostrar_exito_login = False
+
     if st.button("Cerrar Sesión"):
         st.session_state.logueado = False
         st.session_state.usuario_actual = ""
+        st.session_state.mostrar_exito_login = False
         st.rerun()
 
 st.divider()
