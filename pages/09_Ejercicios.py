@@ -58,19 +58,19 @@ st.subheader("Ejercicio 4: Galería de Mascotas")
 tab1, tab2, tab3 = st.tabs(["Gatos", "Perros", "Aves"])
 
 with tab1:
-    st.image("https://images.unsplash.com/photo-1574158622682-e40e69881006?w=500", 
+    st.image("https://images.unsplash.com/photo-1511044568932-338cba0ad803?auto=format&fit=crop&w=1000&q=80", 
              caption="Gato adorable", use_column_width=True)
     if st.button("Me gusta", key="gato_like"):
         st.toast("Te gusta esta mascota")
 
 with tab2:
-    st.image("https://images.unsplash.com/photo-1633722715463-d30628519e89?w=500",
+    st.image("https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1000&q=80",
              caption="Perro feliz", use_column_width=True)
     if st.button("Me gusta", key="perro_like"):
         st.toast("Te gusta esta mascota")
 
 with tab3:
-    st.image("https://images.unsplash.com/photo-1444464666175-1642156dc396?w=500",
+    st.image("https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=1000&q=80",
              caption="Águila majestuosa", use_column_width=True)
     if st.button("Me gusta", key="aguila_like"):
         st.toast("Te gusta esta mascota")
@@ -93,8 +93,6 @@ with st.form(key="formulario_comentarios"):
             "Mensaje": mensaje
         }
         st.json(datos)
-    elif enviado and not mensaje.strip():
-        st.warning("El mensaje no puede estar vacío")
 
 st.divider()
 
@@ -122,7 +120,6 @@ if not st.session_state.logueado:
         else:
             st.error("Usuario o contraseña incorrectos")
 else:
-    st.success(f"Bienvenido, {st.session_state.usuario_actual}!")
     if st.button("Cerrar Sesión"):
         st.session_state.logueado = False
         st.session_state.usuario_actual = ""
@@ -197,5 +194,3 @@ df = pd.DataFrame({
 })
 
 st.line_chart(df.set_index("Índice"))
-
-st.info(f"Se muestran {len(st.session_state.numeros_aleatorios)} números aleatorios")
